@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "module": "commonjs",
+        "allowJs": true,
+        "target": "esnext",
+        "noLib": false,
+        "moduleResolution": "node",
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "types": [
+            "node"
+        ],
+        "jsx": "react",
+        "experimentalDecorators": true
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}
