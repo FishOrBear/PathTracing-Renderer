@@ -77,11 +77,11 @@ module.exports = (__webpack_require__(3))(1);
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const PathTracingRenderer_1 = __webpack_require__(2);
-// import * as Dat from "../node_modules/dat.gui/build/dat.gui.js";
 const Dat = __webpack_require__(8);
 let render = new PathTracingRenderer_1.PathTracingRenderer();
 let path = render.LoadDefaultMaterial(__webpack_require__(9));
 let mis = render.LoadDefaultMaterial(__webpack_require__(10));
+render.RenderCycle();
 let gui = new Dat.GUI({
     autoPlace: true,
     width: 300,
@@ -105,7 +105,6 @@ let data = {
 for (let key in data) {
     gui.add(data, key);
 }
-render.RenderCycle();
 
 
 /***/ }),

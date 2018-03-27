@@ -21,12 +21,12 @@ let data = {
     Path: () =>
     {
         render.pathTracingMesh.material = path;
-        render.sampleCounter = 0;
+        render.sampleCounter = 1;
     },
     Mis: () =>
     {
         render.pathTracingMesh.material = mis;
-        render.sampleCounter = 0;
+        render.sampleCounter = 1;
     },
     Stop: () =>
     {

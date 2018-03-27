@@ -41,7 +41,7 @@ void main( void )
 	
 	vec3 previousColor = texture2D(tPreviousTexture, vUv).rgb;
 	
-	if ( uCameraJustStartedMoving )
+	if ( uSampleCounter == 1.0 )
 	{
 		previousColor = vec3(0.0); // clear rendering accumulation buffer
 	}

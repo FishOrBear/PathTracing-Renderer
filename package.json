@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack && webpack --config webpackDll.config.ts",
+    "build": "webpack --config webpackDll.config.ts && webpack",
     "dev": "webpack-dev-server",
     "pre": "webpack --config webpackDll.config.ts"
   },
