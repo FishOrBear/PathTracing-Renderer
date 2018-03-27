@@ -1,3 +1,5 @@
+#include <pathtracing_uniforms_and_defines>
+
 #define PIXEL_SAMPLES 		1		//samples per pixel. Increase for better image quality
 #define MAX_DEPTH			5		//GI depth
 #define CLAMP_VALUE			4.0		//biased rendering
@@ -6,8 +8,8 @@
 #define BOX
 
 //used macros and constants
-// #define PI 					3.1415926
-// #define TWO_PI 				6.2831852
+// #define PI 				3.1415926
+// #define TWO_PI 			6.2831852
 // #define FOUR_PI 			12.566370
 #define INV_PI 				0.3183099
 #define INV_TWO_PI 			0.1591549
@@ -118,10 +120,10 @@ struct Light {
     float intensity_;
 };
     
-// struct Ray {
-//     vec3 origin;
-//     vec3 direction;
-// };
+struct Ray {
+    vec3 origin;
+    vec3 direction;
+};
     
 struct Camera {
     mat3 rotate;
@@ -158,6 +160,7 @@ Material getMaterial(int i) {
     if(i==0) return materials[0]; 
     if(i==1) return materials[1];
     if(i==2) return materials[2];
+    if(i==4) return materials[4];
     return materials[3];
 #endif 
 }
@@ -1097,8 +1100,9 @@ void main( void )
             vec3 col_new = accumulatedColor;
             //读取原先的颜色值.
             col_acc = texture2D( tPreviousTexture, vUv ).xyz;
-            // //mix 线性插值. 取x,y的线性混合,x*(1-a)+y*a
-            col_acc = mix(col_acc, col_new, float(1.0)/float(1.0+uSampleCounter));
+            //mix 线性插值. 取x,y的线性混合,x*(1-a)+y*a
+            // col_acc = mix(col_acc, col_new, float(1.0)/float(1.0+uSampleCounter));
+            col_acc = col_acc + col_new;
         }
     }
     gl_FragColor = vec4( col_acc, 1.0 );

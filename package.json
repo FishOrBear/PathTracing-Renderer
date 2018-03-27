@@ -5,26 +5,28 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev": "webpack-dev-server"
+    "build": "webpack && webpack --config webpackDll.config.ts",
+    "dev": "webpack-dev-server",
+    "pre": "webpack --config webpackDll.config.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/dat.gui": "^0.6.0",
     "@types/node": "^9.6.0",
     "@types/three": "^0.91.0",
     "@types/webpack": "^4.1.2",
+    "add-asset-html-webpack-plugin": "^2.1.3",
     "awesome-typescript-loader": "^4.0.1",
     "html-webpack-plugin": "^3.1.0",
     "shader-loader": "^1.3.1",
-    "ts-loader": "^4.1.0",
     "ts-node": "^5.0.1",
     "typescript": "^2.7.2",
     "webpack": "^3.10.0",
-    "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
+    "dat.gui": "^0.7.1",
     "three": "^0.91.0"
   }
 }

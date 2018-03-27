@@ -14,6 +14,8 @@ let PI_2 = Math.PI / 2;
 
 export class FirstPersonCameraControls
 {
+    mouseMove: boolean = false;
+    mouseDown: boolean = false;
     camera: THREE.Camera;
     yawObject: THREE.Object3D;
     pitchObject: THREE.Object3D;
@@ -34,8 +36,26 @@ export class FirstPersonCameraControls
         let movementX = 0;
         let movementY = 0;
 
+        const onMouseDown = (event: MouseEvent) =>
+        {
+            if (event.button == 0)
+                this.mouseDown = true;
+        }
+        const onMouseUp = (event: MouseEvent) =>
+        {
+            if (event.button == 0)
+            {
+                this.mouseDown = false;
+                this.mouseMove = false;
+            }
+        }
+
         const onMouseMove = event =>
         {
+            if (!this.mouseDown) return;
+
+            this.mouseMove = true;
+
             movementX = event.movementX || event.mozMovementX || 0;
             movementY = event.movementY || event.mozMovementY || 0;
 
@@ -45,7 +65,11 @@ export class FirstPersonCameraControls
             scope.pitchObject.rotation.x = Math.max(- PI_2, Math.min(PI_2, scope.pitchObject.rotation.x));
         };
 
-        document.addEventListener('mousemove', onMouseMove, false);
+
+        let container = document.getElementById("container");
+        container.addEventListener("mousedown", onMouseDown);
+        container.addEventListener("mouseup", onMouseUp);
+        container.addEventListener('mousemove', onMouseMove, false);
     }
 
     getObject() { return this.yawObject };

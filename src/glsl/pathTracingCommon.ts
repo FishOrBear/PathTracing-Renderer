@@ -84,7 +84,7 @@ export const screenOutputShader = {
 
 		'void main()',
 		'{',
-		'vec4 col = texture2D(tTexture0, vUv) * uOneOverSampleCounter;',//
+		'vec4 col = texture2D(tTexture0, vUv) * uOneOverSampleCounter;',// 
 		'gl_FragColor = sqrt(col);',
 		'}'
 
@@ -1128,4 +1128,4 @@ vec3 calcDirectLightingQuad(vec3 mask, vec3 x, vec3 nl, Quad light, inout float 
 `;
 //#endregion pathtracing_main
 
-THREE.ShaderChunk['pathtracing_main'] = require("./glsl/pathtracing_main.glsl");
+THREE.ShaderChunk['pathtracing_main'] = require("./pathtracing_main.glsl");

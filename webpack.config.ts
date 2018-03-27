@@ -2,6 +2,9 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import * as  HtmlWebPackPlugin from "html-webpack-plugin";
 
+const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin");
+
+
 const config: webpack.Configuration = {
     entry: './src/index.ts',
     output: {
@@ -17,29 +20,35 @@ const config: webpack.Configuration = {
 
     devtool: "source-map",
 
-    plugins: [
-        new HtmlWebPackPlugin({
-            title: "webCAD",
-            template: './src/index.html'
-        }),
-    ],
-
     resolve: {
+        alias: {
+            "dat.gui": path.resolve('./node_modules/dat.gui/build/dat.gui.js'),
+        },
         extensions: [".ts", ".tsx", ".js", "json"]
     },
 
     module: {
         rules: [{
             test: /\.(glsl|vs|fs)$/,
-            // type: "javascript/auto",
             use: "shader-loader"
         },
         {
             test: /\.tsx?$/,
-            // type: "javascript/auto",
             use: "awesome-typescript-loader"
         }]
-    }
+    },
+
+    plugins: [
+        new HtmlWebPackPlugin({
+            title: "webCAD",
+            template: './src/index.html'
+        }),
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require(path.resolve("./dist/webpackDll.json"))
+        }),
+        new AddAssetHtmlPlugin({ filepath: path.resolve("./dist/dll.js") })
+    ],
 };
 
 export default config;
