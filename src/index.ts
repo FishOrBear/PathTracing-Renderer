@@ -32,11 +32,11 @@ let data = {
     },
     Stop: () =>
     {
-        render.Disabled = false;
+        render.Disabled = true;
     },
     Start: () =>
     {
-        render.Disabled = true;
+        render.Disabled = false;
     },
 }
 

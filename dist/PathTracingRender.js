@@ -97,10 +97,10 @@ let data = {
         render.sampleCounter = 1;
     },
     Stop: () => {
-        render.Disabled = false;
+        render.Disabled = true;
     },
     Start: () => {
-        render.Disabled = true;
+        render.Disabled = false;
     },
 };
 for (let key in data) {
