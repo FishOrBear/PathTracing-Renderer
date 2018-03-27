@@ -8,6 +8,8 @@ let path = render.LoadDefaultMaterial(require("./glsl/pathTracingFragmentShader.
 
 let mis = render.LoadDefaultMaterial(require("./glsl/mis.glsl"));
 
+render.pathTracingMesh.material = path;
+
 render.RenderCycle();
 
 let gui = new Dat.GUI(

@@ -81,6 +81,7 @@ const Dat = __webpack_require__(8);
 let render = new PathTracingRenderer_1.PathTracingRenderer();
 let path = render.LoadDefaultMaterial(__webpack_require__(9));
 let mis = render.LoadDefaultMaterial(__webpack_require__(10));
+render.pathTracingMesh.material = path;
 render.RenderCycle();
 let gui = new Dat.GUI({
     autoPlace: true,
